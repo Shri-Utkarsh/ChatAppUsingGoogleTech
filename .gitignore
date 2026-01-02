@@ -1,0 +1,35 @@
+# 1. Dependencies (Crucial)
+# Never commit these. They are huge and can be re-installed via package.json
+node_modules/
+pnpm-lock.yaml
+# (Keep package-lock.json or yarn.lock, but ignore node_modules)
+
+# 2. Environment Variables (Security)
+# NEVER commit keys, passwords, or secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 3. Build Outputs
+# These are generated files, not source code
+dist/
+build/
+out/
+coverage/
+
+# 4. Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# 5. OS & Editor Junk
+# Files your computer creates that teammates don't need
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-workspace

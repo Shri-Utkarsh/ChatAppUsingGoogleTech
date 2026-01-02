@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SECURE_CHAT_V1 // UPLINK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="site-header">
+        <div class="brand">>_ SECURE_CHAT_V1</div>
+        <div class="status">STATUS: ENCRYPTED <span class="status-dot"></span></div>
+    </nav>
+
+    <div class="container main-content">
+        <div id="screen-identity" class="screen centered-screen">
+            <h1 class="mega-title glow-text">ANONYMOUS_UPLINK</h1>
+            
+            <div class="cyber-box identity-box">
+                <h3>>_ INIT_IDENTITY</h3>
+                <div class="input-group">
+                    <input type="text" id="inp-display-name" placeholder="Enter Alias" maxlength="15">
+                    <button class="btn-outline btn-small" onclick="generateIdentity()" style="margin-top: 8px; width: 100%; border-style: dashed;">
+                        🤖 GENERATE ALIAS (GEMINI AI)
+                    </button>
+                    <div id="ai-backstory" class="typing-text hidden" style="margin-top:5px; font-size: 0.8em; color: var(--term-green);"></div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="inp-username" placeholder="Secret ID (Username)" maxlength="15">
+                </div>
+                <button class="btn-hero" onclick="saveIdentity()">⬢ INITIALIZE SESSION</button>
+            </div>
+        </div>
+
+        <div id="screen-lobby" class="screen hidden">
+            <header class="lobby-header">
+                <h1>>_ MAIN_LOBBY</h1>
+                <button class="btn-outline" onclick="logout()">LOGOUT</button>
+            </header>
+            <p class="welcome-text">Welcome, <span id="display-user" class="glow-text"></span>.</p>
+            <div class="hero-buttons">
+                <div class="cyber-box action-panel">
+    <h3>⬡ CREATE NODE</h3>
+    
+    <div class="input-group">
+        <input type="text" id="create-room-name" placeholder="Room Name">
+        <button class="btn-outline btn-small" onclick="generateRoomName()" style="margin-top: 5px; width: 100%; border-style: dashed; font-size: 0.8em;">
+            🎲 SUGGEST SECURE NAME (AI)
+        </button>
+    </div>
+    
+    <div class="input-group">
+        <input type="password" id="create-room-pass" placeholder="Password">
+    </div>
+    <button class="btn-hero" onclick="createRoom()">CREATE</button>
+</div>
+                <div class="cyber-box action-panel">
+                    <h3>→ JOIN NODE</h3>
+                    <div class="input-group"><input type="text" id="join-room-id" placeholder="Room ID"></div>
+                    <div class="input-group"><input type="password" id="join-room-pass" placeholder="Password"></div>
+                    <button class="btn-hero" onclick="joinRoom()">CONNECT</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-chat" class="screen hidden full-height">
+            <header class="chat-header">
+                <div class="room-info">
+                    <h2 id="room-title" class="glow-text">Unknown Room</h2>
+                    <button id="btn-copy-id" onclick="copyRoomId()">📋 ID</button>
+                    <span id="host-display" class="host-tag"></span>
+                    <span id="timer" class="timer glow-text">02:00:00</span>
+                </div>
+                <div class="controls">
+                    <button class="btn-outline" onclick="leaveRoom()">LEAVE</button>
+                    <button id="btn-kick" class="hidden btn-outline" onclick="adminKickUser()">BOOT</button>
+                    <button id="btn-delete" class="hidden btn-danger glow-red" onclick="adminDeleteRoom()">DESTROY</button>
+                </div>
+            </header>
+            
+            <div id="chat-box"></div>
+            <div id="typing-indicator" class="typing-text hidden"></div>
+
+            <div class="input-area">
+                <input type="text" id="msg-input" placeholder="> Encrypting input..." autocomplete="off">
+                <button class="btn-hero btn-small" onclick="sendMessage()">SEND</button>
+            </div>
+            <div id="warning-msg" class="hidden glow-red">WARNING: UPLINK EXPIRING SOON</div>
+        </div>
+    </div>
+
+    <div id="custom-modal" class="modal-overlay hidden">
+        <div class="modal-box cyber-box">
+            <h3 id="modal-title" class="glow-text">>_ SYSTEM_MESSAGE</h3>
+            <p id="modal-text"></p>
+            <div class="modal-buttons">
+                <button id="btn-modal-ok" class="btn-hero btn-small">ACKNOWLEDGE</button>
+                <button id="btn-modal-cancel" class="hidden btn-danger btn-small">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
